@@ -1,0 +1,5 @@
+- name: Setup vsFTPd on Debian/Ubuntu
+  hosts: localhost
+  become: yes
+  roles:
+    - vsftpd

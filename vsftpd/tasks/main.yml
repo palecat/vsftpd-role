@@ -1,0 +1,21 @@
+---
+# tasks file for vsftpd_role
+
+- name: Install vsftpd
+  ansible.builtin.apt:
+    name: vsftpd
+    state: latest
+    update_cache: yes
+
+- name: Modify FTP configuation
+  ansible.builtin.template:
+    src: templates/vsftpd.conf.j2
+    dest: /etc/vsftpd.conf
+    backup: yes
+  notify:
+    - restart vsftpd
+
+- name: Start vsftpd service
+  ansible.builtin.service:
+    name: vsftpd
+    state: started
